@@ -1,0 +1,263 @@
+{ 
+  "language": "English", 
+  "img_dir": "en",
+  "areas": [ 
+      {
+      	  "area_num": "1",
+          "area_file": "area1",
+          "title": "MEDIA PREPARATION AREA", 
+          "subtitle":"Improve productivity and quality for media preparation",
+          "items": [ 
+      		{
+      			"puce_name": "MASTERCLAVE<sup>®</sup>",
+      			"puce_x": "24",
+      			"puce_y": "18",
+      			"fiche_file": "A1_masterclave",
+      			"fiche_video": "nop",
+      			"fiche_testimonial": "nop"
+      		},
+      		{
+      			"puce_name": "APS One",
+      			"puce_x": "9",
+      			"puce_y": "25",
+      			"fiche_file": "A2_apsone",
+      			"fiche_video": "yep",
+      			"fiche_testimonial": "nop"
+      		},
+      		{
+      			"puce_name": "XY 500 / PM i<sup>™</sup>",
+      			"puce_x": "35",
+      			"puce_y": "5",
+      			"fiche_file": "A3_x500_PMi",
+      			"fiche_video": "nop",
+      			"fiche_testimonial": "nop"
+      		}
+  		   ] 	
+
+      }, 
+      {
+      	  "area_num": "2",
+          "area_file": "area2",
+          "title": "SAMPLE PREPARATION AREA", 
+          "subtitle": "Improve workflow efficiency and accuracy<br>with automated blending and diluting",
+          "items": [ 
+          {
+          "puce_name": "DILUMAT<sup>™</sup>",
+          "puce_x": "30",
+          "puce_y": "33",
+          "fiche_file": "B1_Dilumat",
+          "fiche_video": "nop",
+          "fiche_testimonial": "nop"
+          },
+          {
+          "puce_name": "READY-TO-USE<br>BROTH",
+          "puce_x": "64",
+          "puce_y": "43",
+          "fiche_file": "B2_ready_to_use_broth",
+          "fiche_video": "nop",
+          "fiche_testimonial": "nop"
+          },
+          {
+          "puce_name": "SMASHER<sup>™</sup>",
+          "puce_x": "43",
+          "puce_y": "46",
+          "fiche_file": "B3_smasher",
+          "fiche_video": "nop",
+          "fiche_testimonial": "yep"
+          },
+          {
+          "puce_name": "DILUMAT<sup>™</sup><br>EXPERT EVO XL<br>/SMASHER<sup>™</sup> XL",
+          "puce_x": "48",
+          "puce_y": "4",
+          "fiche_file": "B4_Dilumat_XL_Smasher_XL",
+          "fiche_video": "no",
+          "fiche_testimonial": "nop"
+          }
+          ]  
+      }, 
+      {
+      	  "area_num": "3",
+          "area_file": "area3",
+          "title": "QUALITY INDICATORS AREA",
+          "subtitle": "Achieve fast and easy next-day results for quality indicators",
+          "items": [ 
+          {
+          "puce_name": "TEMPO<sup>®</sup>",
+          "puce_x": "56",
+          "puce_y": "6",
+          "fiche_file": "C1_tempo",
+          "fiche_video": "yep",
+          "fiche_testimonial": "yep"
+          },
+          {
+          "puce_name": "CULTURE MEDIA",
+          "puce_x": "70",
+          "puce_y": "30",
+          "fiche_file": "C2_culture_media",
+          "fiche_video": "nop",
+          "fiche_testimonial": "nop"
+          }
+          ]  
+      },
+      {
+      	  "area_num": "4",
+          "area_file": "area4",
+          "title": "INCUBATION AREA",
+          "subtitle": "For real-time temperature control",
+          "items": [ 
+          {
+            "puce_name": "LABGUARD<sup>®</sup>",
+            "puce_x": "23",
+            "puce_y": "23",
+            "fiche_file": "D1_labguard",
+            "fiche_video": "yep",
+            "fiche_testimonial": "nop"
+          }
+         ]  
+      },
+      {
+      	  "area_num": "5",
+          "area_file": "area5",
+          "title": "PATHOGENS AREA",
+          "subtitle": "Achieve simple, next-day results to ensure food safety",
+          "items": [ 
+          {
+            "puce_name": "VIDAS<sup>®</sup>",
+            "puce_x": "35",
+            "puce_y": "24",
+            "fiche_file": "E1_vidas",
+            "fiche_video": "yep",
+            "fiche_testimonial": "yep"
+          },
+          {
+            "puce_name": "CULTURE MEDIA",
+            "puce_x": "60",
+            "puce_y": "40",
+            "fiche_file": "E2_culture_media",
+            "fiche_video": "yep",
+            "fiche_testimonial": "yep"
+          }
+         ]  
+      },
+      {
+      	  "area_num": "6",
+          "area_file": "area6",
+          "title": "IDENTIFICATION AREA",
+          "subtitle": "From manual to rapid identification",
+          "items": [ 
+          {
+            "puce_name": "API<sup>®</sup>",
+            "puce_x": "25",
+            "puce_y": "12",
+            "fiche_file": "F1_api",
+            "fiche_video": "nop",
+            "fiche_testimonial": "nop"
+          },
+          {
+            "puce_name": "VITEK<sup>®</sup> 2<br>COMPACT",
+            "puce_x": "48",
+            "puce_y": "20",
+            "fiche_file": "F2_vitek",
+            "fiche_video": "yep",
+            "fiche_testimonial": "nop"
+          },
+          {
+            "puce_name": "VITEK<sup>®</sup> MS",
+            "puce_x": "65",
+            "puce_y": "27",
+            "fiche_file": "F3_vitek_ms",
+            "fiche_video": "yep",
+            "fiche_testimonial": "nop"
+          }
+         ]  
+      },
+      {
+      	  "area_num": "7",
+          "area_file": "area7",
+          "title": "MICROBIAL DETECTION AREA ",
+          "subtitle": "For rapid sterility testing",
+          "items": [ 
+          {
+            "puce_name": "CHEMUNEX<sup>®</sup>",
+            "puce_x": "54",
+            "puce_y": "34",
+            "fiche_file": "G1_chemunex",
+            "fiche_video": "yep",
+            "fiche_testimonial": "nop"
+          },
+      		{
+      			"puce_name": "BACT/ALERT<sup>®</sup> 3D",
+      			"puce_x": "19",
+      			"puce_y": "11",
+      			"fiche_file": "G2_bactalert",
+      			"fiche_video": "nop",
+      			"fiche_testimonial": "nop"
+      		}
+  		   ] 	
+      },
+      {
+      	  "area_num": "8",
+          "area_file": "area8",
+          "title": "ENVIRONMENTAL MONITORING AREA",
+          "subtitle": "Key to the HACCP process",
+          "items": [ 
+      		{
+      			"puce_name": "AIR",
+      			"puce_x": "16",
+      			"puce_y": "26",
+      			"fiche_file": "H1_samplair",
+      			"fiche_video": "nop",
+      			"fiche_testimonial": "nop"
+      		},
+          {
+            "puce_name": "SURFACE",
+            "puce_x": "71",
+            "puce_y": "25",
+            "fiche_file": "H2_surface",
+            "fiche_video": "nop",
+            "fiche_testimonial": "nop"
+          },
+          {
+            "puce_name": "WATER",
+            "puce_x": "58",
+            "puce_y": "20",
+            "fiche_file": "H3_water",
+            "fiche_video": "nop",
+            "fiche_testimonial": "nop"
+          }
+  		   ] 	
+      },
+      {
+          "area_num": "9",
+          "area_file": "area9",
+          "title": "IT SOLUTIONS",
+          "subtitle": "For added value services",
+          "items": [ 
+          {
+            "puce_name": "IT SOLUTIONS",
+            "puce_x": "43",
+            "puce_y": "8",
+            "fiche_file": "I1_it_solutions",
+            "fiche_video": "nop",
+            "fiche_testimonial": "nop"
+          }
+         ]  
+      },
+      {
+      	  "area_num": "10",
+          "area_file": "area10",
+          "title": "WORKFLOW OPTIMIZATION",
+          "subtitle": "Customized service to enhance lab performance",
+          "items": [ 
+      		{
+      			"puce_name": "WORKFLOW OPTIMIZATION",
+      			"puce_x": "35",
+      			"puce_y": "10",
+      			"fiche_file": "J1_workflow",
+      			"fiche_video": "nop",
+      			"fiche_testimonial": "yep"
+      		}
+  		   ] 	
+      }
+   ] 
+} 

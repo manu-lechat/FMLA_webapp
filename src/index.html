@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>FMLA Lab</title>
+	<link rel="stylesheet" href="../bower_components/idangerous-swiper/dist/idangerous.swiper.css">
+	<link rel="stylesheet" href="css/appli_fmla.css">
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	<!-- endbuild -->
+</head>
+<body>
+
+<div class="main ombre1">
+
+
+	<section id="vignettage" class="ecran ombre_areas" onclick='return false;'></section>
+
+	<section id="ecran_intro" class="ecran">
+		<div id="intro_container">
+			<img id="intro1" src="img/intro_logo.png" class="transition_2000">
+			<img id="intro2" src="img/en/intro_biolab.png" class="transition_2000">
+			<img id="intro3" src="img/en/intro_biolab_sub.png" class="transition_2000">
+			<img id="intro4" id="bt_welcome_en"  src="img/en/intro_bt_welcome.png" class="transition_600">
+		</div>
+	</section>
+
+	<header id="header_biomerieux" class="ombre2"></header>
+	<section id="ecran_home" class="ecran">
+		<div id="home_content">
+			<div class="vignettage"></div>
+			<div class="iso_grid"></div>
+			<div id="home_middle">
+				<a id="home_a1" class="showSlide resize" slideToShow="0" href="#"></a>
+				<a id="home_a2" class="showSlide resize"  slideToShow="1" href="#"></a>
+				<a id="home_a3" class="showSlide resize"  slideToShow="2" href="#"></a>
+				<a id="home_a4" class="showSlide resize"  slideToShow="3" href="#"></a>
+				<a id="home_a5" class="showSlide resize"  slideToShow="4" href="#"></a>
+				<a id="home_a6" class="showSlide resize"  slideToShow="5" href="#"></a>
+				<a id="home_a7" class="showSlide resize"  slideToShow="6" href="#"></a>
+				<a id="home_a8" class="showSlide resize"  slideToShow="7" href="#"></a>
+				<a id="home_a9" class="showSlide" slideToShow="8" href="#" ></a>
+				<a id="home_a10" class="showSlide" slideToShow="9" href="#"></a>
+			</div>
+		</div>
+		<footer>
+			<a id="bt_play"></a>
+		</footer>
+	</section>
+
+	<!-- ecran areas -->
+	<section id="ecran_areas" class="ecran ">
+		
+		<!-- swiper container  -->
+		<div class="swiper-container area_container ">
+		<div id="swiper_area_container" class="swiper-wrapper area_wrapper" >
+			
+		 <!--  swiper content type
+		  <div class="swiper-slide area_slide"> 
+		  		<section class="bannier_txt">
+		  			<h1></h1><h2></h2>
+		  		</section>
+				<div class="swipper_middle redim_169">	
+					<a href="#" style="left:310px; top:150px"><span></span></a>
+					<img src="img/area8.png">
+				</div>	
+		  </div> -->
+
+		</div>
+		</div>
+		<!-- /swiper container  -->
+
+		<footer>
+			<a href="#" id="bt_home"></a>
+			<nav id="swiper_nav">
+				<a href="#" slideToShow="0" class="swiper_link"><img src="img/area1_min.png" alt=""></a>
+				<a href="#" slideToShow="1" class="swiper_link"><img src="img/area2_min.png" alt=""></a>
+				<a href="#" slideToShow="2" class="swiper_link"><img src="img/area3_min.png" alt=""></a>
+				<a href="#" slideToShow="3" class="swiper_link"><img src="img/area4_min.png" alt=""></a>
+				<a href="#" slideToShow="4" class="swiper_link"><img src="img/area5_min.png" alt=""></a>
+				<a href="#" slideToShow="5" class="swiper_link"><img src="img/area6_min.png" alt=""></a>
+				<a href="#" slideToShow="6" class="swiper_link"><img src="img/area7_min.png" alt=""></a>
+				<a href="#" slideToShow="7" class="swiper_link"><img src="img/area8_min.png" alt=""></a>
+			</nav>	
+				<a href="#" slideToShow="8" class="swiper_link footer_bt_txt footer_a9" >It Solutions</a>
+				<a href="#" slideToShow="9" class="swiper_link footer_bt_txt footer_a10" >Workflow optimisation</a>
+
+		</footer> 
+
+		<!-- fiche produit  -->
+		<div id="fiche_produit_bg" class="ecran ">
+		<div id="fiche_container" class='ombre2 transition_600'>
+			<div id="fiche_produit">fiche container</div>
+			<div id="fiche_video"></div>
+			<div id="fiche_temoignage"></div>	
+			<div id="link_container">
+				<a href="#" class="" id="fiche_produit_bt_video">Video</a>
+				<a href="#" class="" id="fiche_produit_bt_testimonial">Testimonial</a>
+			</div>
+			<a href="#" target="_blank" class="" id="fiche_produit_bt_share">&nbsp;</a>
+			<a href="#" class="" id="fiche_produit_bt_close">X</a>
+			<a href="#" class="" id="fiche_produit_bt_back"><</a>
+		</div>
+		<!-- /fiche produit  -->
+	</section>	
+	<!-- /ecran areas -->
+
+
+	<!-- ecran loader -->
+	<section id="ecran_loader" class="ecran"><img class="loader" src="img/loading.gif"></section>
+	<!-- /ecran loader -->
+
+	<section id="ecran_password" class="ecran">
+		<div id="password_container">			
+			<form id="password" method="post" action="javascript:verif_password()">
+			<input type = "password" name="name" id="password_field"><br>
+			<a href="#" id="submit"  onclick="javascript:verif_password()">ok</a>
+			</form>
+		</div>
+	</section>
+
+
+</div>
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../bower_components/gsap/src/uncompressed/plugins/CSSPlugin.js"></script>
+	<script src="../bower_components/gsap/src/uncompressed/easing/EasePack.js"></script>
+	<script src="../bower_components/gsap/src/uncompressed/TweenLite.js"></script>
+	<script src="../bower_components/gsap/src/uncompressed/TweenMax.js"></script>
+	<script src="../bower_components/idangerous-swiper/dist/idangerous.swiper.js"></script>
+	<script src="js/appli_fmla.js"></script>
+
+</body>
+</html>
+
+
