@@ -62,6 +62,12 @@ gulp.task('data', function() {
 });
 
 // copy medias
+gulp.task('css', function() {
+	gulp.src(src.css)
+		.pipe(refresh(server));
+});
+
+// copy medias
 gulp.task('media', function() {
 	gulp.src(src.media)
 		.pipe(gulp.dest(dest.media))
@@ -79,13 +85,15 @@ gulp.task('font', function() {
 gulp.task('usemin', function(){
 	gulp.src(src.index)
 		.pipe(usemin({
-			css: [minifyCss(), 'concat'],
+			//css: [minifyCss(), 'concat'],
 			html: [minifyHtml({empty: true})],
 			js: [uglify()]
 		}))
 		.pipe(gulp.dest(dest.folder))
 		.pipe(refresh(server));
 });
+
+
 
 
 // minify images
@@ -141,6 +149,22 @@ gulp.task('default', function() {
 	gulp.watch(src.css, ['usemin']);
 	gulp.watch(src.index, ['usemin']);
 	//gulp.watch(src.img, ['img']);
+});
+
+
+// dev task : run with 'gulp dev'
+gulp.task('dev', function() {
+	// delete dist folder and rebuild it
+	rimraf(dest.folder, function() {
+		gulp.start('server', 'livereload', 'open', 'data', 'media', 'img', 'font', 'usemin');
+	});
+
+	// watch assets, and if they change rebuild them
+	gulp.watch(src.font, ['font']);
+	gulp.watch(src.data, ['data']);
+	gulp.watch(src.css, ['css']);
+	gulp.watch(src.js, ['usemin']);
+	gulp.watch(src.index, ['usemin']);
 });
 
 

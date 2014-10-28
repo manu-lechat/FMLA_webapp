@@ -1,4 +1,3 @@
-
 var main_width = 1920;
 var main_height = 1080;
 var rapport_proportions_1 = 1.9; 
@@ -10,19 +9,16 @@ var contentSwiper;
 var myTween;
 var timer1;
 var JsonArray;
+var myAnim;
 // Main init
 
 function initMain(){
 
 	console.log("init main");
 	resize_window();
-	doNextStep();
 	window.addEventListener("resize", resize_window);
-
-	//init_ecran_home();
-	//get_json();
-	//init_ecran_area();
-
+	myAnim = new anim_intro();
+	doNextStep();
 }
 
 function doNextStep(){
@@ -41,8 +37,8 @@ function doNextStep(){
 		case 4: 	
 			config_all();
 		break;	
-		case 5: 		
-			intro_in();		
+		case 5: 	
+			welcome_in();	
 		break;
 	}
 }
@@ -55,8 +51,9 @@ function config_all(){
 
 
 	console.log('config_all()');
-	/* intro  */////////////////////////////////////////////////////
-	document.getElementById('intro_container').onclick = function() {  intro_out(); clearTimeout(timer1);	};
+	/* welcome  */////////////////////////////////////////////////////
+	document.getElementById('welcome_container').onclick = function() {  welcome_out(); };
+
 	
 	/* home  */////////////////////////////////////////////////////
 	document.getElementById('header_biomerieux').onclick = function() {  main_reset();	};
@@ -101,8 +98,8 @@ function config_all(){
 		};
 	}	
 
-	/* fiche prduit */////////////////////////////////////////////////////
-
+	/* loading de la vidéo d'intro */ 
+	myAnim.preload();
 
 	/* config done, play */
 	doNextStep();
@@ -112,27 +109,146 @@ function config_all(){
 // INTRO SCREEN ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function intro_in(){
+function welcome_in(){
 
-	console.log('intro_in()');
-	show_ecran('ecran_intro');
-	var intro_item = document.querySelectorAll('#intro_container img');
-	for (var i = 0; i < intro_item.length; i++) {
-		//TweenLite.fromTo(intro_item[i], 2,  { opacity:"0" },{delay:1+i/1.5, opacity:"1", ease:Power2.easeOut});
-		intro_item[i].style.opacity = 1;
+	console.log('welcome_in()');
+	show_ecran('ecran_welcome');
+	var welcome_item = document.querySelectorAll('#ecran_welcome img');
+	for (var i = 0; i < welcome_item.length; i++) {
+		welcome_item[i].style.opacity = 1;
 	}
-	timer1 = setTimeout(function(){intro_out()},6000)
+	timer1 = setTimeout(function(){welcome_out()},3000)
 }	
 
-function intro_out(){
+function welcome_out(){
 
-	console.log('intro_out()');
-	var intro_item = document.querySelectorAll('#intro_container img');
-	for (var i = 0; i < intro_item.length; i++) {
-		intro_item[i].style.opacity = 0;
+	clearTimeout(timer1);
+	console.log('welcome_out()');
+	var welcome_item = document.querySelectorAll('#ecran_welcome img');
+	for (var i = 0; i < welcome_item.length; i++) {
+		welcome_item[i].style.opacity = 0;
 	}
-	home_in();
+	timer1 = setTimeout(function(){intro_anim_in()},3000)
+	
 }	
+
+// intro_anim
+
+function intro_anim_in(){
+
+	console.log('intro_anim_in()');
+	show_ecran('ecran_intro_anim');
+	myAnim.start();
+
+}
+
+
+var anim_intro = function(){
+
+	console.log('init anim_intro Obj');
+	// PARTIE TIMELINE /////////////////////////////
+	// Timeline animation des textes / images
+
+	function anim_intro_timeline(){
+
+		console.log('anim_intro_timeline()');
+		var anim_intro = new TimelineLite( {onComplete:completeTimeline, paused: true });
+
+		anim_intro.fromTo("#txt1", 0.8, { opacity:"0", marginTop:"20px" },{opacity:"1", marginTop:"0", ease:Back.easeOut });
+		anim_intro.fromTo("#txt2", 0.5, { opacity:"0", marginTop:"20px" },{ delay:1, opacity:"1", marginTop:"0", ease:Back.easeOut });
+		anim_intro.fromTo("#txt3", 0.5, { opacity:"0", marginTop:"20px" },{opacity:"1", marginTop:"0", ease:Back.easeOut });
+		anim_intro.to("#txt3", 0.5, { delay:6, opacity:"0" });
+		anim_intro.to("#txt2", 0.5, { opacity:"0" });
+		anim_intro.to("#txt1", 0.5, { opacity:"0" }); 
+		anim_intro.fromTo("#visu1", 0.5, { opacity:"0" },{  delay:1, opacity:"1" });
+		anim_intro.fromTo("#txt4", 0.5, { opacity:"0" },{  opacity:"1", onComplete:function(){ play_video2(); } });
+		anim_intro.to("#txt4", 0.1, { delay:3, opacity:"0" });
+		anim_intro.fromTo("#txt5", 0.5, { opacity:"0" },{ opacity:"1" });
+		anim_intro.to("#txt5", 0.5, {  delay:3, opacity:"0" });
+		anim_intro.to("#visu1", 0.5, { opacity:"0" });
+
+		anim_intro.autoRemoveChildren = true;
+		anim_intro.delay(4);
+		anim_intro.play();
+
+		function completeTimeline(){ the_end(); }
+	}
+ 
+	// PARTIE VIDEO /////////////////////////////
+ 	// Injection de la balise video 1 - chargement - lancement onloaded de la 2
+	
+	function anim_intro_video1(){
+
+		console.log('anim_intro_video1()');
+		var videoContent='';
+		videoContent+='<div id="video_1_container" class="hidden" >';
+		videoContent+='<video id="video_1">';
+		videoContent+='<source src="media/ecran_intro_anim.mp4" type="video/webm">';
+		videoContent+='<source  src="media/ecran_intro_anim.mp4" type="video/mp4">';
+		videoContent+="<p>You navigator doesn't support HTML5 video!</p>";
+		videoContent+='</video>';
+		videoContent+='</div>';
+
+		document.getElementById('intro_anim_video_1').innerHTML = videoContent;
+		var video_1 = document.getElementById("video_1");
+		video_1.addEventListener('play', function() {
+		   document.getElementById('ecran_loader').style.display = "none";
+		   document.getElementById("video_1_container").className = "";
+		   TweenLite.fromTo('#video_1_container', 2, { opacity:"0" },{ opacity:"1" });
+		   anim_intro_timeline();
+		   anim_intro_video2();
+
+		}, false);
+
+		console.log('preload video');
+	}
+
+	function anim_intro_video2(){
+
+		console.log('anim_intro_video2()');
+		var videoContent='';
+		videoContent+='<div id="video_2_container" class="hidden" >';
+		videoContent+='<video id="video_2">';
+		videoContent+='<source src="media/introFin.mp4" type="video/webm">';
+		videoContent+='<source  src="media/introFin.mp4" type="video/mp4">';
+		videoContent+="<p>You navigator doesn't support HTML5 video!</p>";
+		videoContent+='</video>';
+		videoContent+='</div>';
+
+		document.getElementById('intro_anim_video_2').innerHTML = videoContent;
+		var video_2 = document.getElementById("video_2");
+
+		video_2.addEventListener('play', function() {
+		   document.getElementById("video_2_container").className = "";
+		   TweenLite.fromTo("#video_2_container", 1, { opacity:"0" },{ opacity:"1", onComplete: function(){
+				document.getElementById('intro_anim_video_1').innerHTML = "";
+			} });
+		}, false);
+	}
+
+	function play_video2(){
+		document.getElementById("video_2").play();
+	}
+
+	function the_end(){ 
+	 	 TweenLite.fromTo('#ecran_intro_anim', 3, { opacity:"1" },{ opacity:"0", onComplete: function(){
+			document.getElementById('ecran_intro_anim').innerHTML = "";
+			home_in();
+		} });		
+	}
+
+	this.start = function(){ 
+		//video_1.addEventListener('canplay', function() {
+			video_1.play();
+		//}, false);
+		console.log('play video');	
+	}
+	this.preload = function(){ 
+		anim_intro_video1();
+	}
+}
+
+
 
 
 // HOME CREEN ////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,9 +260,14 @@ function home_in(){
 	show_ecran("ecran_home");	
 	resize_window();	
 	var home_items = document.querySelectorAll('#home_middle a');
+	// anim items
 	for (var i = 0; i < home_items.length; i++) {
 		TweenLite.fromTo(home_items[i], 1,  { opacity:"0" },{delay:0.2+i/10, opacity:"1", ease:Power2.easeOut});
 	}
+	// anim header
+	TweenLite.fromTo('#header_biomerieux', 2, { top:"-10em" },{  delay:2, top:"-5", ease:Strong.easeOut });
+	// anim footer
+	TweenLite.fromTo('#ecran_home footer', 1, { bottom:"-10em" },{  delay:1, bottom:"-5", ease:Strong.easeOut });
 }
 
 function home_out(){
@@ -278,6 +399,10 @@ function config_fiche(fiche_file, fiche_video, fiche_testimonial){
 		bt_back.style.display = 'none';
 	};
 
+	/* bt share*/
+	//$('#fiche_produit_bt_share').attr("href", 'img/'+choosenLanguage+'/'+fiche_file+'.png');
+	$('#fiche_produit_bt_share').attr("href", 'showpad://folder/445729/'+fiche_file+'.png');
+
 }
 
 
@@ -294,7 +419,6 @@ function fiche_in(fiche_file){
 		$('#fiche_container').css("display","block");
 	}});
 	
-	$('#fiche_produit_bt_share').attr("href", 'img/'+choosenLanguage+'/'+fiche_file+'.png');
 	resize_window();
 }
 
@@ -408,34 +532,46 @@ function useJsonDatas(arr) {
 // Screen switch
 function show_ecran(id){
 
-	console.log('show_ecran : '+id);
-	switch(id){
-		case "ecran_intro": 
-			$('#ecran_password').css("display","none");
-			$('#ecran_home').css("display","none");
-			$('#ecran_intro').css("display","block");
-			$('#fiche_container').css("display","none");
-			$("#fiche_produit_bg").css("display","none");
-			$("#ecran_areas").css("display","none");	
-		break;
-		case "ecran_home": 			
-			$('#ecran_password').css("display","none"); 		
-			$('#ecran_home').fadeIn();
-			$('#ecran_intro').css("display","none");
-			$('#fiche_container').css("display","none");
-			$("#fiche_produit_bg").css("display","none");
-			$("#ecran_areas").css("display","none");	
-		break;
-		case "ecran_areas": 
-			$('#ecran_password').css("display","none");
-			$('#ecran_areas').fadeIn();
-			$('#ecran_intro').css("display","none");
-			$('#ecran_home').css("display","none");
-			$('#fiche_container').css("display","none");
-			$("#fiche_produit_bg").css("display","none");
-		break;
-	}		
+	 var ecran_intro_anim = document.getElementById('ecran_intro_anim');
+	 var ecran_password = document.getElementById('ecran_password');
+	 var ecran_home = document.getElementById('ecran_home');
+	var ecran_welcome = document.getElementById('ecran_welcome');
+	var fiche_container = document.getElementById('fiche_container');
+	 var fiche_produit_bg = document.getElementById('fiche_produit_bg');
+	 var ecran_areas = document.getElementById('ecran_areas');
+
+	 ecran_intro_anim.style.display = "none";
+	 ecran_password.style.display = "none";
+	 ecran_home.style.display = "none";
+	 ecran_welcome.style.display = "none";
+	 fiche_container.style.display = "none";
+	 fiche_produit_bg.style.display = "none";
+	 ecran_areas.style.display = "none";
+
+	 console.log('show_ecran : '+id);
+	 switch(id){
+	 	case "ecran_welcome": 
+	 		ecran_welcome.style.display = 'block';
+	 		TweenLite.fromTo(ecran_welcome, 1, { opacity:"0" },{  opacity:"1" });
+	 	break;
+	 	case "ecran_intro_anim": 
+	 		ecran_intro_anim.style.display = "block";
+	 	break;
+	 	case "ecran_home": 				
+	 		ecran_home.style.display = "block";
+	 		TweenLite.fromTo(ecran_home, 1, { opacity:"0" },{  opacity:"1" });
+
+	 	break;
+	 	case "ecran_areas": 
+	 		ecran_areas.style.display = "block";
+	 		TweenLite.fromTo(ecran_areas, 1, { opacity:"0" },{  opacity:"1" });
+	 	break;
+	 }		
 }
+
+
+
+
 
 // verfi password
 

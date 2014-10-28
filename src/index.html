@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>FMLA Lab</title>
+	<!-- build:css css/style.min.css -->
 	<link rel="stylesheet" href="../bower_components/idangerous-swiper/dist/idangerous.swiper.css">
 	<link rel="stylesheet" href="css/appli_fmla.css">
 	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
@@ -15,16 +16,41 @@
 
 
 	<section id="vignettage" class="ecran ombre_areas" onclick='return false;'></section>
+	
 
-	<section id="ecran_intro" class="ecran">
-		<div id="intro_container">
-			<img id="intro1" src="img/intro_logo.png" class="transition_2000">
-			<img id="intro2" src="img/en/intro_biolab.png" class="transition_2000">
-			<img id="intro3" src="img/en/intro_biolab_sub.png" class="transition_2000">
-			<img id="intro4" id="bt_welcome_en"  src="img/en/intro_bt_welcome.png" class="transition_600">
+	<!-- WELCOME SCREEN -->
+	<section id="ecran_welcome" class="ecran">
+		<div id="welcome_container" >
+			<img id="welcome1" src="img/intro_logo.png" class="transition_2000">
+			<img id="welcome2" src="img/en/intro_biolab.png" class="transition_2000">
+			<img id="welcome3" src="img/en/intro_biolab_sub.png" class="transition_2000">
+			<img id="welcome4" id="bt_welcome_en"  src="img/en/intro_bt_welcome.png" class="transition_600">
 		</div>
 	</section>
 
+
+	<!-- INTRO SCREEN -->
+
+
+	<section id="ecran_intro_anim" class="ecran">
+		<div id="intro_anim_video_1" class="intro_anim_video ecran"></div>
+		<div id="intro_anim_video_2" class="intro_anim_video ecran"></div>
+		<div class="container_txt" class="container">
+			<p id="txt1" class="txt_black">Today you face different challenges</p>
+			<p id="txt2" class="ombre_txt">Provide rapid and reliable results</p>
+			<p id="txt3" class="ombre_txt">Release your products faster<br>with confidence</p>
+		</div>
+		<div class="container_img" class="container">
+			<img id="visu1" src="img/en/intro_visu1.png">
+		</div>
+		<div class="container_ssTitre" class="container">
+			<p id="txt4" class="txt_ssTitre">from sample to decision</p>
+			<p id="txt5" class="txt_ssTitre">decide with confidence</p>
+		</div>
+	</section>
+
+
+	<!-- HOME SCREEN -->
 	<header id="header_biomerieux" class="ombre2"></header>
 	<section id="ecran_home" class="ecran">
 		<div id="home_content">
@@ -48,27 +74,24 @@
 		</footer>
 	</section>
 
-	<!-- ecran areas -->
+	<!-- AREAS SCREEN -->
 	<section id="ecran_areas" class="ecran ">
 		
-		<!-- swiper container  -->
+		
 		<div class="swiper-container area_container ">
-		<div id="swiper_area_container" class="swiper-wrapper area_wrapper" >
-			
-		 <!--  swiper content type
-		  <div class="swiper-slide area_slide"> 
-		  		<section class="bannier_txt">
-		  			<h1></h1><h2></h2>
-		  		</section>
-				<div class="swipper_middle redim_169">	
-					<a href="#" style="left:310px; top:150px"><span></span></a>
-					<img src="img/area8.png">
-				</div>	
-		  </div> -->
-
+			<div id="swiper_area_container" class="swiper-wrapper area_wrapper" >			
+			 <!--  swiper content type
+			  <div class="swiper-slide area_slide"> 
+			  		<section class="bannier_txt">
+			  			<h1></h1><h2></h2>
+			  		</section>
+					<div class="swipper_middle redim_169">	
+						<a href="#" style="left:310px; top:150px"><span></span></a>
+						<img src="img/area8.png">
+					</div>	
+			  </div> -->
+			</div>
 		</div>
-		</div>
-		<!-- /swiper container  -->
 
 		<footer>
 			<a href="#" id="bt_home"></a>
@@ -103,13 +126,13 @@
 		</div>
 		<!-- /fiche produit  -->
 	</section>	
-	<!-- /ecran areas -->
 
 
-	<!-- ecran loader -->
+	<!-- LOADER SCREEN -->
 	<section id="ecran_loader" class="ecran"><img class="loader" src="img/loading.gif"></section>
-	<!-- /ecran loader -->
 
+
+	<!-- PASSWORD SCREEN -->
 	<section id="ecran_password" class="ecran">
 		<div id="password_container">			
 			<form id="password" method="post" action="javascript:verif_password()">
@@ -121,13 +144,19 @@
 
 
 </div>
+
+	<!-- build:js js/vendors.min.js -->
 	<script src="../bower_components/jquery/dist/jquery.js"></script>
 	<script src="../bower_components/gsap/src/uncompressed/plugins/CSSPlugin.js"></script>
 	<script src="../bower_components/gsap/src/uncompressed/easing/EasePack.js"></script>
 	<script src="../bower_components/gsap/src/uncompressed/TweenLite.js"></script>
 	<script src="../bower_components/gsap/src/uncompressed/TweenMax.js"></script>
 	<script src="../bower_components/idangerous-swiper/dist/idangerous.swiper.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js js/script.min.js -->
 	<script src="js/appli_fmla.js"></script>
+	<!-- endbuild -->
 
 </body>
 </html>
