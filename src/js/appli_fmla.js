@@ -39,6 +39,7 @@ function doNextStep(){
 		break;	
 		case 5: 	
 			welcome_in();	
+			//area_in();
 		break;
 	}
 }
@@ -54,6 +55,8 @@ function config_all(){
 	/* welcome  */////////////////////////////////////////////////////
 	document.getElementById('welcome_container').onclick = function() {  welcome_out(); };
 
+	/* intro  */////////////////////////////////////////////////////
+	document.getElementById('bt_skip').onclick = function() {  myAnim.skip(); };
 	
 	/* home  */////////////////////////////////////////////////////
 	document.getElementById('header_biomerieux').onclick = function() {  main_reset();	};
@@ -145,6 +148,7 @@ function intro_anim_in(){
 
 var anim_intro = function(){
 
+	var anim_intro;
 	console.log('init anim_intro Obj');
 	// PARTIE TIMELINE /////////////////////////////
 	// Timeline animation des textes / images
@@ -152,7 +156,7 @@ var anim_intro = function(){
 	function anim_intro_timeline(){
 
 		console.log('anim_intro_timeline()');
-		var anim_intro = new TimelineLite( {onComplete:completeTimeline, paused: true });
+		anim_intro = new TimelineLite( {onComplete:completeTimeline, paused: true });
 
 		anim_intro.fromTo("#txt1", 0.8, { opacity:"0", marginTop:"20px" },{opacity:"1", marginTop:"0", ease:Back.easeOut });
 		anim_intro.fromTo("#txt2", 0.5, { opacity:"0", marginTop:"20px" },{ delay:1, opacity:"1", marginTop:"0", ease:Back.easeOut });
@@ -231,12 +235,20 @@ var anim_intro = function(){
 	}
 
 	function the_end(){ 
-	 	 TweenLite.fromTo('#ecran_intro_anim', 3, { opacity:"1" },{ opacity:"0", onComplete: function(){
+	 	 TweenLite.to('#ecran_intro_anim', 3, { opacity:"0", onComplete: function(){
 			document.getElementById('ecran_intro_anim').innerHTML = "";
 			home_in();
 		} });		
 	}
-
+	this.skip = function(){ 
+		anim_intro.stop();
+		TweenLite.to('#ecran_intro_anim', 3, { opacity:"0"});	
+		TweenLite.to('#video_1_container', 3, { opacity:"0"});	
+		TweenLite.to('#video_2_container', 3, { opacity:"0", onComplete: function(){
+			document.getElementById('ecran_intro_anim').innerHTML = "";
+			home_in();
+		} });	
+	}
 	this.start = function(){ 
 		//video_1.addEventListener('canplay', function() {
 			video_1.play();
@@ -258,16 +270,19 @@ function home_in(){
 
 	console.log('affiche_home()');	
 	show_ecran("ecran_home");	
-	resize_window();	
+	resize_window();
+	// bg
+	TweenLite.fromTo('#ecran_home', 2, { opacity:"0" },{ opacity:"1" });	
+	// areas items
 	var home_items = document.querySelectorAll('#home_middle a');
-	// anim items
 	for (var i = 0; i < home_items.length; i++) {
-		TweenLite.fromTo(home_items[i], 1,  { opacity:"0" },{delay:0.2+i/10, opacity:"1", ease:Power2.easeOut});
+		//TweenLite.fromTo(home_items[i], 1,  { opacity:"0" },{delay:0.2+i/10, opacity:"1"});
+	 	home_items[i].style.opacity = 1;
 	}
 	// anim header
-	TweenLite.fromTo('#header_biomerieux', 2, { top:"-10em" },{  delay:2, top:"-5", ease:Strong.easeOut });
+	TweenLite.fromTo('#header_biomerieux', 0.5, { opacity:"0" },{  delay:2.5, opacity:"1", ease:Strong.easeOut });
 	// anim footer
-	TweenLite.fromTo('#ecran_home footer', 1, { bottom:"-10em" },{  delay:1, bottom:"-5", ease:Strong.easeOut });
+	//TweenLite.fromTo('#ecran_home footer', 0.5, { bottom:"-10em" },{  delay:2, bottom:"-5", ease:Strong.easeOut });
 }
 
 function home_out(){
@@ -334,6 +349,7 @@ function onSlideChangeEnd(){
 	tl.play();
 
 	//titres
+	$('.swiper-slide-active .bannier_txt').addClass("active");
 	$('.swiper-slide-active h1').addClass("active");
 	$('.swiper-slide-active h2').addClass("active");
 }
@@ -342,6 +358,7 @@ function onSlideChangeStart(){
 
 	console.log("onSlideChangeStart()");
 	//titres
+	$('.swiper-slide-active .bannier_txt').removeClass("active");
 	$('.area_container h1').removeClass("active");
 	$('.area_container h2').removeClass("active");
 	// puces	
@@ -539,6 +556,7 @@ function show_ecran(id){
 	var fiche_container = document.getElementById('fiche_container');
 	 var fiche_produit_bg = document.getElementById('fiche_produit_bg');
 	 var ecran_areas = document.getElementById('ecran_areas');
+	 var border_bottom = document.getElementById('border_bottom');
 
 	 ecran_intro_anim.style.display = "none";
 	 ecran_password.style.display = "none";
@@ -547,6 +565,7 @@ function show_ecran(id){
 	 fiche_container.style.display = "none";
 	 fiche_produit_bg.style.display = "none";
 	 ecran_areas.style.display = "none";
+	 border_bottom.style.display = "block";
 
 	 console.log('show_ecran : '+id);
 	 switch(id){
@@ -555,6 +574,7 @@ function show_ecran(id){
 	 		TweenLite.fromTo(ecran_welcome, 1, { opacity:"0" },{  opacity:"1" });
 	 	break;
 	 	case "ecran_intro_anim": 
+	 		border_bottom.style.display = "none";
 	 		ecran_intro_anim.style.display = "block";
 	 	break;
 	 	case "ecran_home": 				
