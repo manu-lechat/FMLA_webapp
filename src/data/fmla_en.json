@@ -3,9 +3,41 @@
   "img_dir": "en",
   "areas": [ 
       {
-      	  "area_num": "1",
+          "area_num": "1",
           "area_file": "area1",
-          "title": "MEDIA PREPARATION AREA", 
+          "title": "ENVIRONMENTAL MONITORING",
+          "subtitle": "Key to the HACCP process",
+          "items": [ 
+          {
+            "puce_name": "AIR",
+            "puce_x": "16",
+            "puce_y": "26",
+            "fiche_file": "H1_samplair",
+            "fiche_video": "yep",
+            "fiche_testimonial": "nop"
+          },
+          {
+            "puce_name": "SURFACE",
+            "puce_x": "71",
+            "puce_y": "25",
+            "fiche_file": "H2_surface",
+            "fiche_video": "nop",
+            "fiche_testimonial": "nop"
+          },
+          {
+            "puce_name": "WATER",
+            "puce_x": "58",
+            "puce_y": "20",
+            "fiche_file": "H3_water",
+            "fiche_video": "nop",
+            "fiche_testimonial": "nop"
+          }
+         ]  
+      },
+      {
+      	  "area_num": "2",
+          "area_file": "area2",
+          "title": "MEDIA PREPARATION ", 
           "subtitle":"Improve productivity and quality for media preparation",
           "items": [ 
       		{
@@ -29,16 +61,16 @@
       			"puce_x": "35",
       			"puce_y": "5",
       			"fiche_file": "A3_x500_PMi",
-      			"fiche_video": "nop",
+      			"fiche_video": "yep",
       			"fiche_testimonial": "nop"
       		}
   		   ] 	
 
       }, 
       {
-      	  "area_num": "2",
-          "area_file": "area2",
-          "title": "SAMPLE PREPARATION AREA", 
+      	  "area_num": "3",
+          "area_file": "area3",
+          "title": "SAMPLE PREPARATION ", 
           "subtitle": "Improve workflow efficiency and accuracy<br>with automated blending and diluting",
           "items": [ 
           {
@@ -76,9 +108,9 @@
           ]  
       }, 
       {
-      	  "area_num": "3",
-          "area_file": "area3",
-          "title": "QUALITY INDICATORS AREA",
+      	  "area_num": "4",
+          "area_file": "area4",
+          "title": "QUALITY INDICATORS ",
           "subtitle": "Achieve fast and easy next-day results for quality indicators",
           "items": [ 
           {
@@ -100,9 +132,9 @@
           ]  
       },
       {
-      	  "area_num": "4",
-          "area_file": "area4",
-          "title": "INCUBATION AREA",
+      	  "area_num": "5",
+          "area_file": "area5",
+          "title": "INCUBATION ",
           "subtitle": "For real-time temperature control",
           "items": [ 
           {
@@ -110,15 +142,15 @@
             "puce_x": "23",
             "puce_y": "23",
             "fiche_file": "D1_labguard",
-            "fiche_video": "yep",
+            "fiche_video": "nop",
             "fiche_testimonial": "nop"
           }
          ]  
       },
       {
-      	  "area_num": "5",
-          "area_file": "area5",
-          "title": "PATHOGENS AREA",
+      	  "area_num": "6",
+          "area_file": "area6",
+          "title": "PATHOGENS ",
           "subtitle": "Achieve simple, next-day results to ensure food safety",
           "items": [ 
           {
@@ -134,15 +166,15 @@
             "puce_x": "60",
             "puce_y": "40",
             "fiche_file": "E2_culture_media",
-            "fiche_video": "yep",
-            "fiche_testimonial": "yep"
+            "fiche_video": "nop",
+            "fiche_testimonial": "nop"
           }
          ]  
       },
       {
-      	  "area_num": "6",
-          "area_file": "area6",
-          "title": "IDENTIFICATION AREA",
+      	  "area_num": "7",
+          "area_file": "area7",
+          "title": "IDENTIFICATION ",
           "subtitle": "From manual to rapid identification",
           "items": [ 
           {
@@ -172,9 +204,9 @@
          ]  
       },
       {
-      	  "area_num": "7",
-          "area_file": "area7",
-          "title": "MICROBIAL DETECTION AREA ",
+      	  "area_num": "8",
+          "area_file": "area8",
+          "title": "MICROBIAL DETECTION  ",
           "subtitle": "For rapid sterility testing",
           "items": [ 
           {
@@ -193,38 +225,6 @@
       			"fiche_video": "nop",
       			"fiche_testimonial": "nop"
       		}
-  		   ] 	
-      },
-      {
-      	  "area_num": "8",
-          "area_file": "area8",
-          "title": "ENVIRONMENTAL MONITORING AREA",
-          "subtitle": "Key to the HACCP process",
-          "items": [ 
-      		{
-      			"puce_name": "AIR",
-      			"puce_x": "16",
-      			"puce_y": "26",
-      			"fiche_file": "H1_samplair",
-      			"fiche_video": "nop",
-      			"fiche_testimonial": "nop"
-      		},
-          {
-            "puce_name": "SURFACE",
-            "puce_x": "71",
-            "puce_y": "25",
-            "fiche_file": "H2_surface",
-            "fiche_video": "nop",
-            "fiche_testimonial": "nop"
-          },
-          {
-            "puce_name": "WATER",
-            "puce_x": "58",
-            "puce_y": "20",
-            "fiche_file": "H3_water",
-            "fiche_video": "nop",
-            "fiche_testimonial": "nop"
-          }
   		   ] 	
       },
       {

@@ -1,3 +1,4 @@
+var links_video_type = 'showpad'; // ou online // ou local
 var main_width = 1920;
 var main_height = 1080;
 var rapport_proportions_1 = 1.9; 
@@ -10,6 +11,10 @@ var myTween;
 var timer1;
 var JsonArray;
 var myAnim;
+var oo_slider;
+var info_bulle = document.getElementById('info_bulle')
+var url_videos = "http://www.e-lechat.com/localhost/videos_fmla_webapp";
+
 // Main init
 
 function initMain(){
@@ -18,6 +23,7 @@ function initMain(){
 	resize_window();
 	window.addEventListener("resize", resize_window);
 	myAnim = new anim_intro();
+	oo_slider = new obj_slider();
 	doNextStep();
 }
 
@@ -32,13 +38,16 @@ function doNextStep(){
 			get_json();		
 		break;	
 		case 3:
-			init_swipper();	 
+			oo_slider.init();	 
 		break;	
 		case 4: 	
+			myAnim.preload(); /* loading de la vidéo d'intro */ 
 			config_all();
 		break;	
 		case 5: 	
 			welcome_in();	
+			//intro_anim_in();
+			//home_in();	
 			//area_in();
 		break;
 	}
@@ -53,10 +62,13 @@ function config_all(){
 
 	console.log('config_all()');
 	/* welcome  */////////////////////////////////////////////////////
-	document.getElementById('welcome_container').onclick = function() {  welcome_out(); };
+	document.getElementById('welcome_container').onclick = function() {  
+		welcome_out();
+		intro_anim_in();
+	};
 
 	/* intro  */////////////////////////////////////////////////////
-	document.getElementById('bt_skip').onclick = function() {  myAnim.skip(); };
+	document.getElementById('bt_skip').onclick = function() { myAnim.skip(); };
 	
 	/* home  */////////////////////////////////////////////////////
 	document.getElementById('header_biomerieux').onclick = function() {  main_reset();	};
@@ -66,7 +78,7 @@ function config_all(){
 			area_in( this.getAttribute('slideToShow')); 
 			resize_window();
 			home_out(); 
-			onSlideChangeEnd();
+			oo_slider.onSlideChangeEnd();
 		};
 	}	
 
@@ -74,8 +86,8 @@ function config_all(){
 		area_in(0); 
 		resize_window();
 		home_out(); 
-		onSlideChangeEnd();
-		autoplay();
+		oo_slider.onSlideChangeEnd();
+		oo_slider.autoplay();
 	};
 
 	document.getElementById('home_a9').innerHTML = JsonArray.areas[8].title;
@@ -86,11 +98,18 @@ function config_all(){
 	var swiper_link = document.querySelectorAll('a.swiper_link');
 	for (var i = 0; i < swiper_link.length; i++) {
 		swiper_link[i].onclick = function() { 			
-			contentSwiper.swipeTo( this.getAttribute('slideToShow'), 1000); 
-			
+			contentSwiper.stopAutoplay();
+			contentSwiper.swipeTo( this.getAttribute('slideToShow'), 1000); 			
+		};
+	}	
+	for (var i = 0; i < swiper_link.length; i++) {
+		swiper_link[i].onmouseover = function() { 			
+			console.log(this.getAttribute('alt'));
 		};
 	}	
 	document.getElementById('bt_home').onclick = function() {  home_in(); };
+	document.getElementById('areas_header_biomerieux').onclick = function() {  main_reset(); };
+	document.getElementById('bt_sample').onclick = function() {  main_reset(); };
 
 	// puces
 	var area_puces = document.querySelectorAll('.area_slide a');
@@ -101,8 +120,6 @@ function config_all(){
 		};
 	}	
 
-	/* loading de la vidéo d'intro */ 
-	myAnim.preload();
 
 	/* config done, play */
 	doNextStep();
@@ -120,20 +137,13 @@ function welcome_in(){
 	for (var i = 0; i < welcome_item.length; i++) {
 		welcome_item[i].style.opacity = 1;
 	}
-	timer1 = setTimeout(function(){welcome_out()},3000)
 }	
+
 
 function welcome_out(){
-
-	clearTimeout(timer1);
-	console.log('welcome_out()');
-	var welcome_item = document.querySelectorAll('#ecran_welcome img');
-	for (var i = 0; i < welcome_item.length; i++) {
-		welcome_item[i].style.opacity = 0;
-	}
-	timer1 = setTimeout(function(){intro_anim_in()},3000)
 	
-}	
+	document.getElementById('ecran_welcome').innerHTML = "";
+}
 
 // intro_anim
 
@@ -142,7 +152,6 @@ function intro_anim_in(){
 	console.log('intro_anim_in()');
 	show_ecran('ecran_intro_anim');
 	myAnim.start();
-
 }
 
 
@@ -150,6 +159,7 @@ var anim_intro = function(){
 
 	var anim_intro;
 	console.log('init anim_intro Obj');
+
 	// PARTIE TIMELINE /////////////////////////////
 	// Timeline animation des textes / images
 
@@ -158,105 +168,107 @@ var anim_intro = function(){
 		console.log('anim_intro_timeline()');
 		anim_intro = new TimelineLite( {onComplete:completeTimeline, paused: true });
 
-		anim_intro.fromTo("#txt1", 0.8, { opacity:"0", marginTop:"20px" },{opacity:"1", marginTop:"0", ease:Back.easeOut });
-		anim_intro.fromTo("#txt2", 0.5, { opacity:"0", marginTop:"20px" },{ delay:1, opacity:"1", marginTop:"0", ease:Back.easeOut });
-		anim_intro.fromTo("#txt3", 0.5, { opacity:"0", marginTop:"20px" },{opacity:"1", marginTop:"0", ease:Back.easeOut });
-		anim_intro.to("#txt3", 0.5, { delay:6, opacity:"0" });
-		anim_intro.to("#txt2", 0.5, { opacity:"0" });
-		anim_intro.to("#txt1", 0.5, { opacity:"0" }); 
-		anim_intro.fromTo("#visu1", 0.5, { opacity:"0" },{  delay:1, opacity:"1" });
-		anim_intro.fromTo("#txt4", 0.5, { opacity:"0" },{  opacity:"1", onComplete:function(){ play_video2(); } });
-		anim_intro.to("#txt4", 0.1, { delay:3, opacity:"0" });
-		anim_intro.fromTo("#txt5", 0.5, { opacity:"0" },{ opacity:"1" });
-		anim_intro.to("#txt5", 0.5, {  delay:3, opacity:"0" });
-		anim_intro.to("#visu1", 0.5, { opacity:"0" });
+		anim_intro.fromTo("#txtA1", 0.8, { opacity:"0", marginTop:"20px" },{opacity:"1", marginTop:"0" });
+		anim_intro.fromTo("#txtA2", 4, { opacity:"0", marginLeft:"0px" },{ delay:1, opacity:"1", marginLeft:"150px", ease:Back.easeOut }, "phase1");
+		anim_intro.fromTo("#txtA3", 4, { opacity:"0", marginRight:"0px" },{delay:1.2, opacity:"1",marginRight:"150px", ease:Back.easeOut }, "phase1+=0.2");
+		anim_intro.fromTo("#txtA4", 4, { opacity:"0", marginLeft:"0px" },{delay:1.4, opacity:"1",marginLeft:"150px", ease:Back.easeOut} , "phase1+=0.2");
+		
+		anim_intro.to("#txtA4", 0.5, { delay:0, opacity:"0" });
+		anim_intro.to("#txtA3", 0.5, { opacity:"0" });
+		anim_intro.to("#txtA2", 0.5, { opacity:"0" });
+		anim_intro.to("#txtA1", 0.5, { opacity:"0" }); 
+
+		anim_intro.fromTo("#txtB1", 0.8, { opacity:"0" },{opacity:"1" }, "phase2");
+		anim_intro.fromTo("#txtB1A", 0.8, { opacity:"0" },{opacity:"1" }, "phase2");
+		anim_intro.fromTo("#txtB1B", 0.8, { opacity:"0" },{opacity:"1" }, "phase2");
+		
+		anim_intro.fromTo("#txtB2", 1, { opacity:"0", marginRight:"100px" },{ delay:1, opacity:"1", marginRight:"0" }, "phase3");
+		anim_intro.fromTo("#txtB2A", 1, { delay:0.6, opacity:"0", marginRight:"100px" },{ delay:0, opacity:"1", marginRight:"0" }, "phase3+=0.2");
+		anim_intro.fromTo("#txtB2B", 1, { delay:0, opacity:"0", marginLeft:"100px" },{ delay:1, opacity:"1", marginLeft:"0" }, "phase3+=0.2");
+		anim_intro.fromTo("#visuB1", 0.5, { opacity:"0" },{ opacity:"1" }, "phase3");		
+		
+		anim_intro.to("#visuB1", 0.5, { delay:4, opacity:"0" });
+		anim_intro.to("#txtB2", 0.5, { opacity:"0" }, "phase4");
+		anim_intro.to("#txtB2A", 0.5, { opacity:"0" }, "phase4");
+		anim_intro.to("#txtB2B", 0.5, { opacity:"0" }, "phase4");
+		anim_intro.to("#txtB1A", 0.2, { opacity:"0" }, "phase4");
+		anim_intro.to("#txtB1B", 0.2, { opacity:"0" }, "phase4");
+
+
+		anim_intro.fromTo("#txtC1", 0.5, {delay:1, opacity:"0" },{opacity:"1" });
+		anim_intro.fromTo("#txtC2", 0.5, { opacity:"0" },{opacity:"1" });
+		anim_intro.fromTo("#visuC1", 1, { opacity:"0",scale:0.8},{opacity:"1", scale:1 });
+		anim_intro.fromTo("#visuC2", 1, { opacity:"0",scale:1.5 },{delay:1,  opacity:"1", scale:1 });
+
+		anim_intro.to("#visuC2", 1, { delay:7, opacity:"0" });
+		anim_intro.to("#visuC1", 1, { opacity:"0" });
+		anim_intro.to("#txtC2", 0.5, { opacity:"0" });
+		anim_intro.to("#txtC1", 0.5, { opacity:"0" , onComplete:function(){ the_end();	 } });
+
 
 		anim_intro.autoRemoveChildren = true;
-		anim_intro.delay(4);
+		anim_intro.delay(3);
+	
 		anim_intro.play();
 
-		function completeTimeline(){ the_end(); }
+		function completeTimeline(){  }
 	}
  
-	// PARTIE VIDEO /////////////////////////////
- 	// Injection de la balise video 1 - chargement - lancement onloaded de la 2
-	
-	function anim_intro_video1(){
-
-		console.log('anim_intro_video1()');
-		var videoContent='';
-		videoContent+='<div id="video_1_container" class="hidden" >';
-		videoContent+='<video id="video_1">';
-		videoContent+='<source src="media/ecran_intro_anim.mp4" type="video/webm">';
-		videoContent+='<source  src="media/ecran_intro_anim.mp4" type="video/mp4">';
-		videoContent+="<p>You navigator doesn't support HTML5 video!</p>";
-		videoContent+='</video>';
-		videoContent+='</div>';
-
-		document.getElementById('intro_anim_video_1').innerHTML = videoContent;
-		var video_1 = document.getElementById("video_1");
-		video_1.addEventListener('play', function() {
-		   document.getElementById('ecran_loader').style.display = "none";
-		   document.getElementById("video_1_container").className = "";
-		   TweenLite.fromTo('#video_1_container', 2, { opacity:"0" },{ opacity:"1" });
-		   anim_intro_timeline();
-		   anim_intro_video2();
-
-		}, false);
-
-		console.log('preload video');
-	}
-
-	function anim_intro_video2(){
-
-		console.log('anim_intro_video2()');
-		var videoContent='';
-		videoContent+='<div id="video_2_container" class="hidden" >';
-		videoContent+='<video id="video_2">';
-		videoContent+='<source src="media/introFin.mp4" type="video/webm">';
-		videoContent+='<source  src="media/introFin.mp4" type="video/mp4">';
-		videoContent+="<p>You navigator doesn't support HTML5 video!</p>";
-		videoContent+='</video>';
-		videoContent+='</div>';
-
-		document.getElementById('intro_anim_video_2').innerHTML = videoContent;
-		var video_2 = document.getElementById("video_2");
-
-		video_2.addEventListener('play', function() {
-		   document.getElementById("video_2_container").className = "";
-		   TweenLite.fromTo("#video_2_container", 1, { opacity:"0" },{ opacity:"1", onComplete: function(){
-				document.getElementById('intro_anim_video_1').innerHTML = "";
-			} });
-		}, false);
-	}
-
-	function play_video2(){
-		document.getElementById("video_2").play();
-	}
-
 	function the_end(){ 
-	 	 TweenLite.to('#ecran_intro_anim', 3, { opacity:"0", onComplete: function(){
+	 	 TweenLite.to('#ecran_intro_anim', 1, { opacity:"0", onComplete: function(){
 			document.getElementById('ecran_intro_anim').innerHTML = "";
 			home_in();
 		} });		
 	}
+
 	this.skip = function(){ 
 		anim_intro.stop();
-		TweenLite.to('#ecran_intro_anim', 3, { opacity:"0"});	
-		TweenLite.to('#video_1_container', 3, { opacity:"0"});	
-		TweenLite.to('#video_2_container', 3, { opacity:"0", onComplete: function(){
+		TweenLite.to('#ecran_intro_anim', 1, { opacity:"0"});	
+		TweenLite.to('#ecran_intro_anim p', 1, { opacity:"0"});	
+		TweenLite.to('#ecran_intro_anim img', 1, { opacity:"0"});	
+		TweenLite.to('#video_1_container', 1, { opacity:"0", onComplete: function(){
 			document.getElementById('ecran_intro_anim').innerHTML = "";
 			home_in();
 		} });	
 	}
+
 	this.start = function(){ 
-		//video_1.addEventListener('canplay', function() {
-			video_1.play();
-		//}, false);
-		console.log('play video');	
+
+		console.log('anim.start()');
+		var video_1 = document.getElementById("video_1"); 
+
+		video_1.addEventListener('play', function() {
+			document.getElementById('ecran_loader').style.display = "none";
+			document.getElementById("video_1_container").className = "";
+			TweenLite.fromTo("#video_1_container", 2, { opacity:"0" },{ delay:1,opacity:"1" });
+			TweenLite.fromTo("#video_1", 2, { opacity:"0" },{delay:1, opacity:"1" });
+		}, false);
+
+		video_1.play(); 
+
+		// start animation des txt
+		anim_intro_timeline();
 	}
+
 	this.preload = function(){ 
-		anim_intro_video1();
+
+		// insert la balse video_1
+		// console.log('preload_video_intro()');
+		// var videoContent='';
+		// videoContent+='<div id="video_1_container" class="hidden" >';
+		// videoContent+='<video id="video_1" poster="img/vid_intro_poster.jpg"  webkit-playsinline>';
+		// videoContent+='<source  src="media/video_intro.mp4" type="video/mp4">';
+		// videoContent+='<source src="media/video_intro.webm" type="video/webm">';
+		// videoContent+='<source src="media/video_intro.ogv" type="video/ogg">'; 
+		// videoContent+="<p>You navigator doesn't support HTML5 video!</p>";
+		// videoContent+='</video>';
+		// videoContent+='</div>';
+
+		TweenLite.to("#video_1_container", 0, { opacity:"0" });
+		TweenLite.to("#video_1", 0, { opacity:"0" });
+		//document.getElementById('intro_anim_video_1').innerHTML = videoContent;
+		document.getElementById("video_1").pause();
+
 	}
 }
 
@@ -280,7 +292,12 @@ function home_in(){
 	 	home_items[i].style.opacity = 1;
 	}
 	// anim header
-	TweenLite.fromTo('#header_biomerieux', 0.5, { opacity:"0" },{  delay:2.5, opacity:"1", ease:Strong.easeOut });
+	TweenLite.fromTo('#header_biomerieux', 1, { opacity:"0", top:"-5em"},{  delay:0, top:"0px", opacity:"1" });
+	TweenLite.fromTo('#txtH1A', 0.7, { opacity:"0", marginLeft:"20px"},{  delay:2.5, marginLeft:"0px", opacity:"1" });
+	TweenLite.fromTo('#txtH1B', 0.8, { opacity:"0", marginLeft:"2em"},{  delay:2.7, marginLeft:"0.2em", opacity:"1" });
+	TweenLite.fromTo('#txtH2A', 1, { opacity:"0", marginLeft:"20px"},{  delay:3.5, marginLeft:"0px", opacity:"1"});
+	TweenLite.fromTo('#txtH2B', 1.2, { opacity:"0", marginLeft:"20px"},{  delay:3.8, marginLeft:"0.2em", opacity:"1"});
+	TweenLite.fromTo('#bt_play', 0.4, { opacity:"0", top:"-5em"},{  delay:4, top:"0px", opacity:"1" });
 	// anim footer
 	//TweenLite.fromTo('#ecran_home footer', 0.5, { bottom:"-10em" },{  delay:2, bottom:"-5", ease:Strong.easeOut });
 }
@@ -307,72 +324,95 @@ function area_in(idSlide){
 // SWIPPER ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function init_swipper(){
+var obj_slider = function(){
 
-	console.log('funcion init_areas');
+	this.init = function(){ 
 
-	 // init_swipper
-	contentSwiper = $('.swiper-container').swiper({
-	    // options here:
-	    mode:'horizontal',
-	    grabCursor:'true',
-	    resistance:'50%',
-	    autoplay:'4000',
-	    loop:'true',
-	    keyboardControl:'true',
-	   // autoplay:1000,
-	    speed:1200, 
-	    onSlideChangeStart: function(){
-	    	onSlideChangeStart();
-	    	console.log('start');
-		},
-		onSlideChangeEnd: function(){
-			onSlideChangeEnd();
+		console.log('funcion init_areas');
+
+		 // init_swipper
+		contentSwiper = $('.swiper-container').swiper({
+		    // options here:
+		    mode:'horizontal',
+		    grabCursor:'true',
+		    resistance:'50%',
+		    autoplay:'4000',
+		    loop:'true',
+		    keyboardControl:'true',
+		   // autoplay:1000,
+		    speed:1000, 
+		    onSlideChangeStart: function(){
+		    	onSlideChangeStart();
+		    	console.log('start');
+			},
+			onSlideChangeEnd: function(){
+				onSlideChangeEnd();
+			}
+		  });
+		contentSwiper.stopAutoplay();
+		resize_window();
+		
+		// config rollOver links
+
+
+		$("#swiper_nav a").onmouseover = function(){
+			alert('lk')
+
 		}
-	  });
-	contentSwiper.stopAutoplay();
-	resize_window();
-	// next 
-	doNextStep();
+
+
+		// next 
+		doNextStep();
+	}
+/*
+	this.show_infoBulle = function(){
+		
+		TweenLite.to( '#info_bulle' , 2, { left:"500px" });
+	}
+*/
+	this.onSlideChangeEnd = function(){
+		onSlideChangeEnd();
+	}
+
+	function onSlideChangeEnd(){
+
+		console.log("onSlideChangeEnd()");
+		// puces
+		var tl = new TimelineLite();
+		tl.pause();
+		$(".swiper-slide-active a").each(function() {	
+			tl.fromTo(this, 0.3, { opacity:"0", marginTop:"40px" },{opacity:"1", marginTop:"0", ease:Back.easeOut });
+			});
+		tl.delay(1);
+		tl.play();
+
+		//titres
+		$('.swiper-slide-active .bannier_txt').addClass("active");
+		$('.swiper-slide-active h1').addClass("active");
+		$('.swiper-slide-active h2').addClass("active");
+	}
+
+	function onSlideChangeStart(){
+
+		console.log("onSlideChangeStart()");
+		//titres
+		$('.swiper-slide-active .bannier_txt').removeClass("active");
+		$('.area_container h1').removeClass("active");
+		$('.area_container h2').removeClass("active");
+		// puces	
+		$(".area_slide a").css("opacity","0");	
+		// footer links
+		$('.swiper_link_active').removeClass('swiper_link_active');
+		$('.swiper_link').eq(contentSwiper.activeIndex-1).addClass('swiper_link_active');
+	}
+
+	this.autoplay = function(){
+
+		console.log('autoplay()');
+		contentSwiper.startAutoplay();
+	}
 }
 
-function onSlideChangeEnd(){
-
-	console.log("onSlideChangeEnd()");
-	// puces
-	var tl = new TimelineLite();
-	tl.pause();
-	$(".swiper-slide-active a").each(function() {	
-		tl.fromTo(this, 0.3, { opacity:"0", marginTop:"40px" },{opacity:"1", marginTop:"0", ease:Back.easeOut });
-		});
-	tl.delay(1);
-	tl.play();
-
-	//titres
-	$('.swiper-slide-active .bannier_txt').addClass("active");
-	$('.swiper-slide-active h1').addClass("active");
-	$('.swiper-slide-active h2').addClass("active");
-}
-
-function onSlideChangeStart(){
-
-	console.log("onSlideChangeStart()");
-	//titres
-	$('.swiper-slide-active .bannier_txt').removeClass("active");
-	$('.area_container h1').removeClass("active");
-	$('.area_container h2').removeClass("active");
-	// puces	
-	$(".area_slide a").css("opacity","0");	
-	// footer links
-	$('.swiper_link_active').removeClass('swiper_link_active');
-	$('.swiper_link').eq(contentSwiper.activeIndex-1).addClass('swiper_link_active');
-}
-
-function autoplay(){
-
-	console.log('autoplay()');
-	contentSwiper.startAutoplay();
-}
 
 // FICHE ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -456,8 +496,14 @@ function show_fiche_video(videoFile){
 	var myVideoContainer='';
 	myVideoContainer+='<div id="fiche_video_container" class="hidden" >';
 	myVideoContainer+='<video id="videoclip" controls>';
-	myVideoContainer+='<source src="http://www.e-lechat.com/localhost/videos_fmla_webapp/'+videoFile+'.webm" type="video/webm">';
-	myVideoContainer+='<source  src="http://www.e-lechat.com/localhost/videos_fmla_webapp/'+videoFile+'.mp4" type="video/mp4">';
+	
+	if(links_video_type=="video-online"){
+		myVideoContainer+='<source src="'+url_videos+'/'+videoFile+'.webm" type="video/webm">';
+		myVideoContainer+='<source  src="'+url_videos+'/'+videoFile+'.mp4" type="video/mp4">';
+	}
+	if(links_video_type=="showpad"){
+		myVideoContainer+='<source src="showpad://file/8bdd1fd9994474548c0eda55d8b72319" type="video/mp4">';
+	}	
 	myVideoContainer+="<p>You navigator doesn't support HTML5 video!</p>";
 	myVideoContainer+='</video>';
 	myVideoContainer+='</div>';
@@ -527,7 +573,12 @@ function useJsonDatas(arr) {
 			area_html += '<div></div>';
 			area_html += '</a>';
 			}
-		area_html += '<img src="img/area'+JsonArray.areas[i].area_num+'.jpg">';
+		if(i==8){ 	
+			area_html += '<img src="img/area9.gif">'; 
+
+		}	
+		else{ 		area_html += '<img src="img/area'+JsonArray.areas[i].area_num+'.jpg">'; }
+
 
 
 		// area_html += 		' <video width="320" height="240">';
@@ -565,7 +616,7 @@ function show_ecran(id){
 	 fiche_container.style.display = "none";
 	 fiche_produit_bg.style.display = "none";
 	 ecran_areas.style.display = "none";
-	 border_bottom.style.display = "block";
+	// border_bottom.style.display = "block";
 
 	 console.log('show_ecran : '+id);
 	 switch(id){
@@ -636,7 +687,7 @@ console.log(dysplay_width+"/"+dysplay_height);
 	console.log("resize_window");
 	/* home pahe */
 	$("#home_middle").css("width",  Math.round( $("#home_middle" ).height()*1.9)+"px"  );
-	$("#ecran_home #home_middle a.resize").css("width",  Math.round( $("#ecran_home #home_middle a").height()*1.6 )+"px"  );
+	$("#ecran_home #home_middle a.resize").css("width",  Math.round( $("#ecran_home #home_middle a").height()*1.4 )+"px"  );
 	
 	$(".redim_169").css("width",   Math.round( $(this).height()*1.5)+"px"  );
 	$(".swipper_middle").css("width",   Math.round( $(".swipper_middle").height()*1.6)+"px"  );

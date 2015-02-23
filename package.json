@@ -31,6 +31,10 @@
     "node-webkit-builder": "^0.1.3",
     "open": "0.0.5",
     "rimraf": "^2.2.8",
-    "tiny-lr": "^0.1.4"
+    "tiny-lr": "^0.1.4",
+    "gulp-zip": "~2.0.2"
+  },
+  "dependencies": {
+    "joii": "~3.0.6"
   }
 }

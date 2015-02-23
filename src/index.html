@@ -14,9 +14,8 @@
 
 <div class="main ombre1">
 
-
-	<section id="border_bottom" class="transition_2000"></section>
-	<section id="vignettage" class="ecran ombre_areas" onclick='return false;'></section>
+<!-- 
+	<section id="vignettage" class="ecran ombre_areas" onclick='return false;'></section> -->
 	
 
 	<!-- WELCOME SCREEN -->
@@ -27,62 +26,108 @@
 			<img id="welcome3" src="img/en/intro_biolab_sub.png" class="transition_2000">
 			<img id="welcome4" id="bt_welcome_en"  src="img/en/intro_bt_welcome.png" class="transition_600">
 		</div>
+		<div class="ligne_verte"></div>
 	</section>
 
 
 	<!-- INTRO SCREEN -->
 	<section id="ecran_intro_anim" class="ecran">
+		<section id="border_bottom" class="transition_2000"></section>
 
 		<a href="#" id="bt_skip"></a>
-		<div id="intro_anim_video_1" class="intro_anim_video ecran"></div>
-		<div id="intro_anim_video_2" class="intro_anim_video ecran"></div>
 
-		<div class="container_txt" class="container">
-			<p id="txt1" class="txt_black">Today you face different challenges</p>
-			<p id="txt2" class="ombre_txt">Provide rapid and reliable results</p>
-			<p id="txt3" class="ombre_txt">Release your products faster<br>with confidence</p>
-		</div>
-		<div class="container_img" class="container">
-			<img id="visu1" src="img/en/intro_visu1.png">
-		</div>
-		<div class="container_ssTitre" class="container">
-			<p id="txt4" class="txt_ssTitre">from sample to decision</p>
-			<p id="txt5" class="txt_ssTitre">decide with confidence</p>
+
+		<div class="container_txt container">
+			<p id="txtA1" class="txt_black txt_bold txt_size_5">
+				<span class="txt_size_12 lsmin">Today you face different challenges</span>
+			</p>
+			<p id="txtA2" class=" txt_gris ">Rapid decisions</p>
+			<p id="txtA3" class=" txt_gris ">Improved quality</p>
+			<p id="txtA4" class="txt_gris  ">Increased productivity</p>
 		</div>
 
+		<div class="container_txt container">
+			<p id="txtB1" class=" titre_microLab">
+				<span id="txtB1A" class="txt_bold txt_black">MICROBIOLOGY</span>
+				<span id="txtB1B" class="">LAB</span>
+			</p>
+
+			<p id="txtB2" class="">
+				<span id="txtB2A" class="txt_black txt_size_06"> FROM SAMPLE</span>
+				<span id="txtB2B" class="txt_black txt_size_06">TO DECISION</span>
+			</p>
+		</div>
+
+		<div class="container_img container">
+			<img id="visuB1" src="img/en/intro_visu1.png">
+		</div>		
+
+		<div class="container_txt container">
+			<p id="txtC1" class="txt_black txt_bold txt_size_5">Release your products faster</p>
+			<p id="txtC2" class="txt_black txt_bold txt_size_5" >with confidence</p>
+		</div>
+
+		<div class="container_img container">
+			<img id="visuC1" src="img/en/visuel_triCycle.png">		
+			<img id="visuC2" src="img/en/visuel_triCycle_suite.png">		
+		</div>
+
+		<div id="intro_anim_video_1" class="intro_anim_video ecran">
+			<div id="video_1_container" class="hidden ecran" >
+			<video id="video_1" poster="img/vid_intro_poster.jpg"  webkit-playsinline>
+			<source  src="media/video_intro.mp4" type="video/mp4">
+			<source src="media/video_intro.webm" type="video/webm">
+			<source src="media/video_intro.ogv" type="video/ogg">
+			<p>You navigator doesn't support HTML5 video!</p>
+			</video>
+			</div>
+		</div>
+		
 	</section>
 
 
 	<!-- HOME SCREEN -->
 	<section id="ecran_home" class="ecran">
 
-		<header  id='header_biomerieux'></header>
+		<header  id='header_biomerieux' class="ombre2"></header>
+
+
 
 		<div id="home_content" class=''>
 			<div class="vignettage"></div>
 			<div class="iso_grid"></div>
 			<div id="home_middle" class=''>
-				<a id="home_a1" class="showSlide resize" slideToShow="0" href="#"></a>
-				<a id="home_a2" class="showSlide resize"  slideToShow="1" href="#"></a>
-				<a id="home_a3" class="showSlide resize"  slideToShow="2" href="#"></a>
-				<a id="home_a4" class="showSlide resize"  slideToShow="3" href="#"></a>
-				<a id="home_a5" class="showSlide resize"  slideToShow="4" href="#"></a>
-				<a id="home_a6" class="showSlide resize"  slideToShow="5" href="#"></a>
-				<a id="home_a7" class="showSlide resize"  slideToShow="6" href="#"></a>
-				<a id="home_a8" class="showSlide resize"  slideToShow="7" href="#"></a>
-				<a id="home_a9" class="showSlide" slideToShow="8" href="#" ></a>
-				<a id="home_a10" class="showSlide" slideToShow="9" href="#"></a>
+				<a id="home_a1" alt="test" class="showSlide resize"  slideToShow="0" href="#"></a>
+				<a id="home_a2" alt="test" class="showSlide resize"  slideToShow="1" href="#"></a>
+				<a id="home_a3" alt="test" class="showSlide resize"  slideToShow="2" href="#"></a>
+				<a id="home_a4" alt="test" class="showSlide resize"  slideToShow="3" href="#"></a>
+				<a id="home_a5" alt="test" class="showSlide resize"  slideToShow="4" href="#"></a>
+				<a id="home_a6" alt="test" class="showSlide resize"  slideToShow="5" href="#"></a>
+				<a id="home_a7" alt="test" class="showSlide resize"  slideToShow="6" href="#"></a>
+				<a id="home_a8" alt="test" class="showSlide resize"  slideToShow="7" href="#"></a>
+				<a id="home_a9" alt="test" class="showSlide" slideToShow="8" href="#" ></a>
+				<a id="home_a10" alt="test" class="showSlide" slideToShow="9" href="#"></a>
 			</div>
+			<div class="bannier_txt">
+				<p class="titre_microLab">
+					<span id="txtH1A" class="txt_bold txt_black bold">MICROBIOLOGY</span>
+					<span id="txtH1B" class="" style=""> LAB</span>
+				</p>
+				<p class="sstitre_microLab">
+					<span id="txtH2A" class="">FROM <strong>SAMPLE</strong></span>
+					<span id="txtH2B" class="">TO <strong>DECISION</strong></span>
+				</p>
+			</div>
+			<a href="#" alt="play" id="bt_play"></a>
 		</div>
-		<footer>
-			<a id="bt_play"></a>
-		</footer>
 	</section>
 
 	<!-- AREAS SCREEN -->
 	<section id="ecran_areas" class="ecran ombre_top">
 		
 		
+		<header  id='areas_header_biomerieux' class="header_biomerieux ombre2"></header>
+
 		<div class="swiper-container area_container ">
 			<div id="swiper_area_container" class="swiper-wrapper area_wrapper" >			
 			 <!--  swiper content type
@@ -99,19 +144,46 @@
 		</div>
 
 		<footer>
-			<a href="#" id="bt_home"></a>
+			<a href="#" id="bt_home">
+				MICROBIOLOGY<br>LAB
+
+			</a>
 			<nav id="swiper_nav">
-				<a href="#" slideToShow="0" class="swiper_link"><img src="img/area1_min.png" alt=""></a>
-				<a href="#" slideToShow="1" class="swiper_link"><img src="img/area2_min.png" alt=""></a>
-				<a href="#" slideToShow="2" class="swiper_link"><img src="img/area3_min.png" alt=""></a>
-				<a href="#" slideToShow="3" class="swiper_link"><img src="img/area4_min.png" alt=""></a>
-				<a href="#" slideToShow="4" class="swiper_link"><img src="img/area5_min.png" alt=""></a>
-				<a href="#" slideToShow="5" class="swiper_link"><img src="img/area6_min.png" alt=""></a>
-				<a href="#" slideToShow="6" class="swiper_link"><img src="img/area7_min.png" alt=""></a>
-				<a href="#" slideToShow="7" class="swiper_link"><img src="img/area8_min.png" alt=""></a>
+				<a href="#" alt="test" slideToShow="0" class="swiper_link"><img src="img/area1_min.png" alt="">
+ENVIRONMENTAL<br>MONITORING
+				</a>
+				<a href="#" alt="test" slideToShow="1" class="swiper_link"><img src="img/area2_min.png" alt="">
+				MEDIA<br>PREPARATION</a>
+				<a href="#" alt="test" slideToShow="2" class="swiper_link"><img src="img/area3_min.png" alt="">
+SAMPLE<br>PREPARATION
+				</a>
+				<a href="#" alt="test" slideToShow="3" class="swiper_link"><img src="img/area4_min.png" alt="">
+QUALITY<br>INDICATORS
+				</a>
+				<a href="#" alt="test" slideToShow="4" class="swiper_link"><img src="img/area5_min.png" alt="" class="margin_plus">
+INCUBATION
+				</a>
+				<a href="#" alt="test" slideToShow="5" class="swiper_link"><img src="img/area6_min.png" alt="" class="margin_plus">
+PATHOGENS
+				</a>
+				<a href="#" alt="test" slideToShow="6" class="swiper_link"><img src="img/area7_min.png" alt="" class="margin_plus">
+IDENTIFICATION
+				</a>
+				<a href="#" alt="test" slideToShow="7" class="swiper_link"><img src="img/area8_min.png" alt="" >
+MICROBIAL<br>DETECTION
+				</a>
 			</nav>	
-				<a href="#" slideToShow="8" class="swiper_link footer_bt_txt footer_a9" >It Solutions</a>
-				<a href="#" slideToShow="9" class="swiper_link footer_bt_txt footer_a10" >Workflow optimisation</a>
+
+
+
+			<div id="footer_bottom">
+				<a href="#" id="bt_sample">SAMPLE</a>
+				<a href="#" id="bt_decision">DECISION</a>
+				<div id="footer_bottom_middle">					
+					<a href="#" slideToShow="8" class="swiper_link footer_bt_txt footer_a9" >It Solutions</a>
+					<a href="#" slideToShow="9" class="swiper_link footer_bt_txt footer_a10" >Workflow optimization</a>
+				</div>
+			</div>
 
 		</footer> 
 
@@ -146,7 +218,6 @@
 			</form>
 		</div>
 	</section>
-
 
 </div>
 
