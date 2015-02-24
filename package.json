@@ -2,9 +2,13 @@
   "name": "appli_Fmla",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "dist/index.html",
+  "window": {
+    "toolbar": false,
+    "frame": false,
+    "fullscreen": true,
+    "height": 800,
+    "width": 1200
   },
   "repository": {
     "type": "git",
