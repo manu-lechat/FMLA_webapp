@@ -1,4 +1,4 @@
-var links_video_type = 'showpad'; // ou online // ou local
+var links_video_type = "local"; //s howpad / online // ou local
 var main_width = 1920;
 var main_height = 1080;
 var rapport_proportions_1 = 1.9; 
@@ -13,7 +13,9 @@ var JsonArray;
 var myAnim;
 var oo_slider;
 var info_bulle = document.getElementById('info_bulle')
-var url_videos = "http://www.e-lechat.com/localhost/videos_fmla_webapp";
+var url_videos_online = "http://www.e-lechat.com/localhost/videos_fmla_webapp";
+var url_videos_local = "videos";
+
 
 // Main init
 
@@ -25,6 +27,8 @@ function initMain(){
 	myAnim = new anim_intro();
 	oo_slider = new obj_slider();
 	doNextStep();
+
+
 }
 
 function doNextStep(){
@@ -497,13 +501,17 @@ function show_fiche_video(videoFile){
 	myVideoContainer+='<div id="fiche_video_container" class="hidden" >';
 	myVideoContainer+='<video id="videoclip" controls>';
 	
-	if(links_video_type=="video-online"){
-		myVideoContainer+='<source src="'+url_videos+'/'+videoFile+'.webm" type="video/webm">';
-		myVideoContainer+='<source  src="'+url_videos+'/'+videoFile+'.mp4" type="video/mp4">';
+	if(links_video_type=="online"){
+		myVideoContainer+='<source src="'+url_videos_online+'/'+videoFile+'.webm" type="video/webm">';
+		myVideoContainer+='<source  src="'+url_videos_online+'/'+videoFile+'.mp4" type="video/mp4">';
+	}
+	if(links_video_type=="local"){
+		myVideoContainer+='<source src="'+url_videos_local+'/webm/'+videoFile+'.webm" type="video/webm">';
+		myVideoContainer+='<source  src="'+url_videos_local+'/mp4/'+videoFile+'.mp4" type="video/mp4">';
 	}
 	if(links_video_type=="showpad"){
 		myVideoContainer+='<source src="showpad://file/8bdd1fd9994474548c0eda55d8b72319" type="video/mp4">';
-	}	
+	}
 	myVideoContainer+="<p>You navigator doesn't support HTML5 video!</p>";
 	myVideoContainer+='</video>';
 	myVideoContainer+='</div>';

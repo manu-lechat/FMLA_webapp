@@ -23,6 +23,7 @@ var src = {
 	img:'src/img/**',
 	js:'src/js/**',
 	media:'src/media/**',
+	videos:'src/videos/**',
 	data:'src/data/**',
 	index:'src/index.html'
 };
@@ -35,6 +36,7 @@ var dest = {
 	img:'dist/img',
 	js:'dist/js',
 	media:'dist/media',
+	videos:'dist/videos',
 	data:'dist/data',
 };
 
@@ -74,6 +76,13 @@ gulp.task('media', function() {
 		.pipe(refresh(server));
 });
 
+// copy medias
+gulp.task('videos', function() {
+	gulp.src(src.videos)
+		.pipe(gulp.dest(dest.videos))
+		.pipe(refresh(server));
+});
+
 // copy font
 gulp.task('font', function() {
 	gulp.src(src.font)
@@ -99,26 +108,12 @@ gulp.task('usemin', function(){
 // minify images
 gulp.task('img', function() {
 	gulp.src(src.img)
-		.pipe(imagemin())
+		// .pipe(imagemin())
 		.pipe(gulp.dest(dest.img))
 		.pipe(refresh(server));
 });
 
-gulp.task('nw', function() {
-	var nw = new NwBuilder({
-		files: [dest.folder + '/**/*', 'package.json'],
-		platforms: ['win','osx', 'linux64'],
-		buildDir: './webkitbuilds',
-		version: '0.8.6'
-	});
-	// log build stuff
-	nw.on('log', gutil.log);
-	// launch build
-	nw.build(function(err) {
-		if(err) gutil.log(err);
-	});
 
-});
 
 // livereload server
 gulp.task('livereload', function(){
@@ -138,17 +133,18 @@ gulp.task('lint', function() {
 gulp.task('default', function() {
 	// delete dist folder and rebuild it
 	rimraf(dest.folder, function() {
-		gulp.start('server', 'livereload', 'open', 'data', 'media', 'img', 'font', 'usemin');
+		gulp.start('server', 'livereload', 'open', 'data', 'media', 'videos','img', 'font', 'usemin');
 	});
 
 	// watch assets, and if they change rebuild them
 	gulp.watch(src.font, ['font']);
 	gulp.watch(src.data, ['data']);
-	//gulp.watch(src.media, ['media']);
+	gulp.watch(src.media, ['media']);
 	gulp.watch(src.js, ['usemin']);
 	gulp.watch(src.css, ['usemin']);
 	gulp.watch(src.index, ['usemin']);
-	//gulp.watch(src.img, ['img']);
+	gulp.watch(src.img, ['img']);
+	gulp.watch(src.img, ['videos']);
 });
 
 
@@ -176,3 +172,30 @@ gulp.task('prepare', function() {
 		});
 	});
 });
+
+gulp.task('prepare_exec', function() {
+	// delete dist folder and rebuild it
+	rimraf(dest.folder, function() {
+		rimraf('webkitbuilds', function() {
+			gulp.start('data', 'media', 'videos', 'img', 'font', 'usemin');
+		});
+	});
+});
+
+
+gulp.task('nw', function() {
+	var nw = new NwBuilder({
+		files: [dest.folder + '/**/*', 'package.json'],
+		platforms: ['win','osx', 'linux64'],
+		buildDir: './webkitbuilds'
+		// version: '0.8.6'
+	});
+	// log build stuff
+	nw.on('log', gutil.log);
+	// launch build
+	nw.build(function(err) {
+		if(err) gutil.log(err);
+	});
+
+});
+
