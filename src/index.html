@@ -21,10 +21,15 @@
 	<!-- WELCOME SCREEN -->
 	<section id="ecran_welcome" class="ecran">
 		<div id="welcome_container" >
-			<img id="welcome1" src="img/intro_logo.png" class="transition_2000">
-			<img id="welcome2" src="img/en/intro_biolab.png" class="transition_2000">
-			<img id="welcome3" src="img/en/intro_biolab_sub.png" class="transition_2000">
-			<img id="welcome4" id="bt_welcome_en"  src="img/en/intro_bt_welcome.png" class="transition_600">
+			<div class="welcome_img_container">
+				<img id="welcome1" src="img/intro_logo.png" class="intro_img transition_2000">
+				<img id="welcome2" src="img/en/intro_biolab.png" class="intro_img transition_2000">
+				<img id="welcome3" src="img/en/intro_biolab_sub.png" class="intro_img transition_2000">
+			</div>
+				<a language="en" id="welcome4" src="img/en/intro_bt_welcome.png" class="transition_all_02 bt_welcome ">
+				Welcome</a>
+				<a language="fr" id="welcome4" src="img/en/intro_bt_welcome.png" class="transition_all_02 bt_welcome ">
+				Bienvenue</a>
 		</div>
 		<div class="ligne_verte"></div>
 	</section>
@@ -38,23 +43,22 @@
 
 
 		<div class="container_txt container">
-			<p id="txtA1" class="txt_black txt_bold txt_size_5">
-				<span class="txt_size_12 lsmin">Today you face different challenges</span>
-			</p>
-			<p id="txtA2" class=" txt_gris ">Rapid decisions</p>
-			<p id="txtA3" class=" txt_gris ">Improved quality</p>
-			<p id="txtA4" class="txt_gris  ">Increased productivity</p>
+
+			<h1  id="txtA1" class="json_txtA1">Today you face different challenges*****</h1>
+			<p id="txtA2" class="json_txtA2 txt_gris " style="margin-top: 0.5em;">Rapid decisions*****</p>
+			<p id="txtA3" class="json_txtA3 txt_gris ">Improved quality*****</p>
+			<p id="txtA4" class="json_txtA4 txt_gris ">Increased productivity*****</p>
 		</div>
 
 		<div class="container_txt container">
 			<p id="txtB1" class=" titre_microLab">
-				<span id="txtB1A" class="txt_bold txt_black">MICROBIOLOGY</span>
-				<span id="txtB1B" class="">LAB</span>
+				<span id="txtB1A" class="json_txtB1A txt_bold txt_black">MICROBIOLOGY*****</span>
+				<span id="txtB1B" class="json_txtB1B txt_ombre">LAB*****</span>
 			</p>
 
 			<p id="txtB2" class="">
-				<span id="txtB2A" class="txt_black txt_size_06"> FROM SAMPLE</span>
-				<span id="txtB2B" class="txt_black txt_size_06">TO DECISION</span>
+				<span id="txtB2A" class="json_txtB2A txt_black txt_maj txt_size_06"> FROM SAMPLE*****</span>
+				<span id="txtB2B" class="json_txtB2B txt_black txt_maj txt_size_06">TO DECISION*****</span>
 			</p>
 		</div>
 
@@ -63,8 +67,8 @@
 		</div>		
 
 		<div class="container_txt container">
-			<p id="txtC1" class="txt_black txt_bold txt_size_5">Release your products faster</p>
-			<p id="txtC2" class="txt_black txt_bold txt_size_5" >with confidence</p>
+			<h1 id="txtC1" class="json_txtC1">Release your products faster*****</h1>
+			<h1 id="txtC2" class="json_txtC2" >with confidence*****</h1>
 		</div>
 
 		<div class="container_img container">
@@ -74,11 +78,11 @@
 
 		<div id="intro_anim_video_1" class="intro_anim_video ecran">
 			<div id="video_1_container" class="hidden ecran" >
-			<video id="video_1" poster="img/vid_intro_poster.jpg"  webkit-playsinline>
-			<source  src="media/video_intro.mp4" type="video/mp4">
-			<source src="media/video_intro.webm" type="video/webm">
-			<source src="media/video_intro.ogv" type="video/ogg">
-			<p>You navigator doesn't support HTML5 video!</p>
+			<video id="video_1" poster="img/vid_intro_poster.jpg" >
+				<source  src="media/video_intro.mp4" type="video/mp4">
+				<source src="media/video_intro.webm" type="video/webm">
+				<source src="media/video_intro.ogv" type="video/ogg">
+				<p>You navigator doesn't support HTML5 video!</p>
 			</video>
 			</div>
 		</div>
@@ -110,12 +114,12 @@
 			</div>
 			<div class="bannier_txt">
 				<p class="titre_microLab">
-					<span id="txtH1A" class="txt_bold txt_black bold">MICROBIOLOGY</span>
-					<span id="txtH1B" class="" style=""> LAB</span>
+					<span id="txtH1A" class="json_txtH1A txt_bold txt_black bold">MICROBIOLOGY*****</span>
+					<span id="txtH1B" class="json_txtH1B" style=""> LAB*****</span>
 				</p>
 				<p class="sstitre_microLab">
-					<span id="txtH2A" class="">FROM <strong>SAMPLE</strong></span>
-					<span id="txtH2B" class="">TO <strong>DECISION</strong></span>
+					<span id="txtH2A" class="json_txtH2A">FROM <strong>SAMPLE</strong>*****</span>
+					<span id="txtH2B" class="json_txtH2B">TO <strong>DECISION</strong>*****</span>
 				</p>
 			</div>
 			<a href="#" alt="play" id="bt_play"></a>
@@ -144,44 +148,52 @@
 		</div>
 
 		<footer>
-			<a href="#" id="bt_home">
-				MICROBIOLOGY<br>LAB
-
+			<a href="#" id="bt_home" class="json_txtFnav0">
+				MICROBIOLOGY<br>LAB*****
 			</a>
 			<nav id="swiper_nav">
-				<a href="#" alt="test" slideToShow="0" class="swiper_link"><img src="img/area1_min.png" alt="">
-ENVIRONMENTAL<br>MONITORING
+				<a href="#" alt="test" slideToShow="0" class=" swiper_link">
+					<img src="img/area1_min.png" alt="">
+					<span class="json_txtFnav1">ENVIRONMENTAL<br>MONITORING*****</span>
 				</a>
-				<a href="#" alt="test" slideToShow="1" class="swiper_link"><img src="img/area2_min.png" alt="">
-				MEDIA<br>PREPARATION</a>
-				<a href="#" alt="test" slideToShow="2" class="swiper_link"><img src="img/area3_min.png" alt="">
-SAMPLE<br>PREPARATION
+				<a href="#" alt="test" slideToShow="1" class=" swiper_link">
+					<img src="img/area2_min.png" alt="">
+					<span class="json_txtFnav2">MEDIA<br>PREPARATION*****</span>
 				</a>
-				<a href="#" alt="test" slideToShow="3" class="swiper_link"><img src="img/area4_min.png" alt="">
-QUALITY<br>INDICATORS
+				<a href="#" alt="test" slideToShow="2" class=" swiper_link">
+					<img src="img/area3_min.png" alt="">
+					<span class="json_txtFnav3">SAMPLE<br>PREPARATION*****</span>
 				</a>
-				<a href="#" alt="test" slideToShow="4" class="swiper_link"><img src="img/area5_min.png" alt="" class="margin_plus">
-INCUBATION
+				<a href="#" alt="test" slideToShow="3" class=" swiper_link">
+					<img src="img/area4_min.png" alt="">
+					<span class="json_txtFnav4">QUALITY<br>INDICATORS*****</span>
 				</a>
-				<a href="#" alt="test" slideToShow="5" class="swiper_link"><img src="img/area6_min.png" alt="" class="margin_plus">
-PATHOGENS
+				<a href="#" alt="test" slideToShow="4" class=" swiper_link">
+					<img src="img/area5_min.png" alt="" class="margin_plus">
+					<span class="json_txtFnav5">INCUBATION*****</span>
 				</a>
-				<a href="#" alt="test" slideToShow="6" class="swiper_link"><img src="img/area7_min.png" alt="" class="margin_plus">
-IDENTIFICATION
+				<a href="#" alt="test" slideToShow="5" class=" swiper_link">
+					<img src="img/area6_min.png" alt="" class="margin_plus">
+					<span class="json_txtFnav6">PATHOGENS*****</span>
 				</a>
-				<a href="#" alt="test" slideToShow="7" class="swiper_link"><img src="img/area8_min.png" alt="" >
-MICROBIAL<br>DETECTION
+				<a href="#" alt="test" slideToShow="6" class=" swiper_link">
+					<img src="img/area7_min.png" alt="" class="margin_plus">
+					<span class="json_txtFnav7">IDENTIFICATION*****</span>
+				</a>
+				<a href="#" alt="test" slideToShow="7" class=" swiper_link">
+					<img src="img/area8_min.png" alt="" >
+					<span class="json_txtFnav8">MICROBIAL<br>DETECTION*****</span>
 				</a>
 			</nav>	
 
 
 
 			<div id="footer_bottom">
-				<a href="#" id="bt_sample">SAMPLE</a>
-				<a href="#" id="bt_decision">DECISION</a>
+				<a href="#" class="json_txtFbA1" id="bt_sample">SAMPLE*****</a>
+				<a href="#" class="json_txtFbA2" id="bt_decision">DECISION*****</a>
 				<div id="footer_bottom_middle">					
-					<a href="#" slideToShow="8" class="swiper_link footer_bt_txt footer_a9" >It Solutions</a>
-					<a href="#" slideToShow="9" class="swiper_link footer_bt_txt footer_a10" >Workflow optimization</a>
+					<a href="#" slideToShow="8" class="json_txtFbB1 swiper_link footer_bt_txt footer_a9" >It Solutions*****</a>
+					<a href="#" slideToShow="9" class="json_txtFbB2 swiper_link footer_bt_txt footer_a10" >Workflow optimization*****</a>
 				</div>
 			</div>
 
@@ -194,12 +206,12 @@ MICROBIAL<br>DETECTION
 			<div id="fiche_video"></div>
 			<div id="fiche_temoignage"></div>	
 			<div id="link_container">
-				<a href="#" class="" id="fiche_produit_bt_video">Video</a>
-				<a href="#" class="" id="fiche_produit_bt_testimonial">Testimonial</a>
+				<a href="#" class="json_txtBtVideo" id="fiche_produit_bt_video">Video*****</a>
+				<a href="#" class="json_txtBtTesti" id="fiche_produit_bt_testimonial">Testimonial*****</a>
 			</div>
-			<a href="#" target="_blank" class="" id="fiche_produit_bt_share">&nbsp;</a>
-			<a href="#" class="" id="fiche_produit_bt_close">X</a>
-			<a href="#" class="" id="fiche_produit_bt_back"><</a>
+			<a href="showpad://file/f4ce5abc0c822115e59c428e4c567b1d" id="fiche_produit_bt_share" target="_blank">&#x21E5;</a>
+			<a href="#" id="fiche_produit_bt_close">X</a>
+			<a href="#" id="fiche_produit_bt_back"><</a>
 		</div>
 		<!-- /fiche produit  -->
 	</section>	
@@ -231,7 +243,13 @@ MICROBIAL<br>DETECTION
 	<!-- endbuild -->
 
 	<!-- build:app js/script.min.js -->
-	<script src="js/appli_fmla.js"></script>
+	<script src="js/json_engine.js"></script>
+	<script src="js/ecran_welcome.js"></script>
+	<script src="js/ecran_intro.js"></script>
+	<script src="js/ecran_home.js"></script>
+	<script src="js/ecran_areas.js"></script>
+	<script src="js/ecran_fiche.js"></script>
+	<script src="js/main.js"></script>
 	<!-- endbuild -->
 
 </body>

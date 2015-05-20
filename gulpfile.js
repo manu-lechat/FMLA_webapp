@@ -148,6 +148,23 @@ gulp.task('default', function() {
 	gulp.watch(src.img, ['videos']);
 });
 
+// task for Showpad version - without video folder : run with 'gulp prepare_showpad'
+gulp.task('prepare_showpad', function() {
+	// delete dist folder and rebuild it
+	rimraf(dest.folder, function() {
+		gulp.start('server', 'livereload', 'open', 'data', 'media', 'img', 'font', 'usemin');
+	});
+
+	// watch assets, and if they change rebuild them
+	gulp.watch(src.font, ['font']);
+	gulp.watch(src.data, ['data']);
+	gulp.watch(src.media, ['media']);
+	gulp.watch(src.js, ['usemin']);
+	gulp.watch(src.css, ['usemin']);
+	gulp.watch(src.index, ['usemin']);
+	gulp.watch(src.img, ['img']);
+});
+
 
 // dev task : run with 'gulp dev'
 gulp.task('dev', function() {
